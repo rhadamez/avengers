@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
+
+<title>Erro no servidor</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors/bootstrap.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/erro.css}" />
+</head>
+
+<body class="layout-500">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-xs-offset-0">
+				<div style="text-align: center; margin-top: 80px">
+	
+					<div class="mensagem-403__titulo">
+						<h1 class="">Erro no nosso servidor :(</h1>
+						<div>
+							<div class="mensagem-403__mensagem">
+								<p>
+									Desculpe, ocorreu um erro no nosso servidor.
+								</p>
+								<p>
+									Estamos trabalhando nisso.
+								</p>
+							</div>
+							<div class="mensagem-403__rodape">
+								<a href="javascript:history.back()" class="btn btn-primary">Voltar para onde estava</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

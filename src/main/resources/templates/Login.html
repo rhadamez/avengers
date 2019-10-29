@@ -1,17 +1,57 @@
 <!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-<html>
 <head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>Avengers</title>
-<link rel="stylesheet" href="@{/static/style/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/style/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/style/login.css}">
 </head>
 
 <body>
 
-	<div class="fluid-container">
+	<div class="container container-full">
+		<div class="row h-100 justify-content-center align-items-center">
 
-		<h1>Bah teste</h1>
+			<div class="col-sm-6">
 
+				<h1>Login teste</h1>
+
+				<form th:action="@{/login}" method="POST">
+
+					<div th:if="${#bools.isTrue(param.error)}"
+						class="alert alert-danger" role="alert">
+						<span>Esqueceu teus dados? cara...laghhhhhhhh</span>
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Teu e-mail:</label> <input
+							type="email" class="form-control" autofocus="autofocus"
+							name="username" placeholder="avenger@pasqual.com">
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Tua senha, pah e poom:</label> <input
+							type="password" class="form-control" autofocus="autofocus"
+							name="password" placeholder="lahhhh">
+					</div>
+
+					<div class="form-group form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1"
+							name="remember-me-param"> <label class="form-check-label"
+							for="exampleCheck1">Mantenha-me conectado</label>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Entrar</button>
+
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 

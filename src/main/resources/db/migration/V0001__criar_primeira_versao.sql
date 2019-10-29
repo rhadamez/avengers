@@ -23,3 +23,13 @@ INSERT INTO usuario (id, nome, email, quem_sou, senha) values (1, 'Rhadamez', 'r
 
 INSERT INTO permissao (id, descricao) values (1, 'ROLE_CADASTRAR_USUARIO');
 INSERT INTO permissao (id, descricao) values (2, 'ROLE_PESQUISAR_EVENTO');
+
+CREATE TABLE evento (
+	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(50) NOT NULL,
+	descricao VARCHAR(50) NOT NULL,
+	local VARCHAR(300) NOT NULL,
+	data DATETIME NULL DEFAULT NULL,
+	usuario_id BIGINT(20) NOT NULL,
+	FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
