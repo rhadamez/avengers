@@ -8,11 +8,36 @@
 <body>
 
 	<section layout:fragment="conteudo">
-		
-		<div class="container">
-			teste
+
+		<div class="container mt-4">
+
+			<h2>Eventos</h2>
+			<a th:href="@{/eventos/novo}" class="btn btn-primary">Novo evento</a>
+
+			<div class="table-responsive mt-4">
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Descrição</th>
+							<th scope="col">Onde?</th>
+							<th scope="col">Data</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="evento : ${eventos}">
+							<th scope="row">[[${evento.id}]]</th>
+							<td>[[${evento.nome}]]</td>
+							<td>[[${evento.descricao}]]</td>
+							<td>[[${evento.local}]]</td>
+							<td>[[${{evento.data}}]]</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		
+
 	</section>
 
 	<th:block layout:fragment="javascript-extra">

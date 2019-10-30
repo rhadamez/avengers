@@ -1,7 +1,8 @@
 package com.rhadamez.avengers.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Evento {
@@ -24,11 +26,12 @@ public class Evento {
 	@NotBlank(message = "Ah, bota uma descrição aí pow...")
 	private String descricao;
 
+	@Column(name = "local_evento")
 	@NotBlank(message = "Onde vai ser o esquema? digita pow.")
 	private String local;
 
-	@NotNull(message = "Mete uma data aí pra nós...")
-	private LocalDateTime data;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
@@ -66,11 +69,11 @@ public class Evento {
 		this.local = local;
 	}
 
-	public LocalDateTime getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(LocalDateTime data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
