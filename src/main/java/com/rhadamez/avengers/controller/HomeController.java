@@ -17,7 +17,7 @@ public class HomeController {
 
 	@GetMapping
 	public ModelAndView home() {
-		ModelAndView mv = new ModelAndView("Home");
+		ModelAndView mv = new ModelAndView("home/Home");
 		mv.addObject("eventos", eventoService.listar());
 		
 		return mv;
