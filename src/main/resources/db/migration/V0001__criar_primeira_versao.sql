@@ -24,6 +24,9 @@ INSERT INTO usuario (id, nome, email, quem_sou, senha) values (1, 'Rhadamez', 'r
 INSERT INTO permissao (id, descricao) values (1, 'ROLE_CADASTRAR_USUARIO');
 INSERT INTO permissao (id, descricao) values (2, 'ROLE_PESQUISAR_EVENTO');
 
+INSERT INTO usuario_permissao (id_usuario, id_permissao) values (1, 1);
+INSERT INTO usuario_permissao (id_usuario, id_permissao) values (1, 2);
+
 CREATE TABLE evento (
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50) NOT NULL,

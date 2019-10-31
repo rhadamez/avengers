@@ -1,6 +1,7 @@
 package com.rhadamez.avengers.controller;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -8,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,11 +41,6 @@ public class EventoController {
 
 		
 		if(result.hasErrors()) {
-			
-			for (ObjectError item : result.getAllErrors()) {
-				System.out.println("Bah: "+item.getDefaultMessage());
-			}
-			
 			return novo(evento);
 		}
 
@@ -53,8 +49,29 @@ public class EventoController {
 		
 		
 		attributes.addFlashAttribute("mensagem", "Vento soprado! digo, evento salvo!");
-		
-		return new ModelAndView("redirect:/eventos");
+		return new ModelAndView("redirect:/home");
 	}
 
+	@GetMapping("/manda-pro-alem/{id}")
+	public ModelAndView deletar(@PathVariable("id") Long id, RedirectAttributes attributes, Principal principal) {
+		
+		UsuarioSistema us = (UsuarioSistema) ((Authentication) principal).getPrincipal();
+		Optional<Evento> evento = eventoService.buscar(id);
+		
+		if(us.getUsuario().getId() != evento.get().getCriador().getId()) {
+			attributes.addFlashAttribute("mensagemErro", "Tentando deletar um evento que não é seu, né mizerávi?");
+			return new ModelAndView("redirect:/home");
+		}
+		
+		try {
+			eventoService.delete(id);	
+		}catch(RuntimeException e) {
+			attributes.addFlashAttribute("mensagemErro", "Não deu pra excluir sabagaça, já deve ter sido excluída.");
+			return new ModelAndView("redirect:/home");
+		}
+		
+		attributes.addFlashAttribute("mensagem", "Vento soprado! digo, evento deletado.");
+		return new ModelAndView("redirect:/home");
+	}
+	
 }

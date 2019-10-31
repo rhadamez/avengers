@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/LayoutPadrao}">
 
@@ -24,24 +24,37 @@
 			<h2>Eventos</h2>
 			<a th:href="@{/eventos/novo}" class="btn btn-primary">Novo evento</a>
 
+				<div class="alert alert-success mt-4" role="alert" th:if="${mensagem}">[[${mensagem}]]</div>
+				<div class="alert alert-danger mt-4" role="alert" th:if="${mensagemErro}">[[${mensagemErro}]]</div>
+
 			<div class="table-responsive mt-4">
 				<table class="table table-dark">
 					<thead>
 						<tr>
 							<th scope="col">ID</th>
+							<th scope="col">Criador</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Descrição</th>
 							<th scope="col">Onde?</th>
 							<th scope="col">Data</th>
+							<th scope="col">#</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="evento : ${eventos}">
 							<th scope="row">[[${evento.id}]]</th>
+							<td>[[${evento.criador.nome}]]</td>
 							<td>[[${evento.nome}]]</td>
 							<td>[[${evento.descricao}]]</td>
 							<td>[[${evento.local}]]</td>
 							<td>[[${{evento.data}}]]</td>
+							<td>
+								<a class="btn btn-danger" th:href="@{/eventos/manda-pro-alem/{id} (id=${evento.id})}" th:if="${#authentication.principal.usuario.id == evento.criador.id}">Deletar</a>
+								<button class="btn btn-danger" disabled th:if="${#authentication.principal.usuario.id != evento.criador.id}">Deletar</button>
+							</td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(eventos)}" align="center">
+							<th colspan="7"><h2>Nada cadastrado por aqui :(</h2></th>
 						</tr>
 					</tbody>
 				</table>

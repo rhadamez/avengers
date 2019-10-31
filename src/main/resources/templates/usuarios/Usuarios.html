@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/LayoutPadrao}">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Avengers Pasqual</title>
+<link rel="stylesheet" th:href="@{/style/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/style/login.css}">
+</head>
+
+<body>
+
+	<section layout:fragment="conteudo">
+
+		<div class="container mt-4">
+
+			<h2>Usuários</h2>
+			<a th:href="@{/usuarios/novo}" class="btn btn-primary">Novo
+				usuário</a>
+
+			<div class="alert alert-success mt-4" role="alert"
+				th:if="${mensagem}">[[${mensagem}]]</div>
+			<div class="alert alert-danger mt-4" role="alert"
+				th:if="${mensagemErro}">[[${mensagemErro}]]</div>
+
+			<div class="table-responsive mt-4">
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nome</th>
+							<th scope="col">E-mail</th>
+							<th scope="col">Quem é o bixo?</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="usuario : ${usuarios}">
+							<th scope="row">[[${usuario.id}]]</th>
+							<td>[[${usuario.nome}]]</td>
+							<td>[[${usuario.email}]]</td>
+							<td>
+								<button type="button" class="btn btn-md btn-danger"
+									data-toggle="popover"  data-placement="right" data-trigger="focus"
+									th:data-content="${usuario.quemSou}">História de vida</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</section>
+
+	<th:block layout:fragment="javascript-extra">
+		<script>
+			$(function() {
+				$('[data-toggle="popover"]').popover()
+			})
+		</script>
+
+	</th:block>
+</body>
+
+</html>

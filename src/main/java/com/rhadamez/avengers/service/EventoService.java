@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rhadamez.avengers.exception.NotFoundException;
 import com.rhadamez.avengers.model.Evento;
 import com.rhadamez.avengers.model.Usuario;
 import com.rhadamez.avengers.repository.EventoRepository;
@@ -20,6 +21,10 @@ public class EventoService {
 		return eventoRepository.findAll();
 	}
 	
+	public Optional<Evento> buscar(Long id) {
+		return eventoRepository.findById(id);
+	}
+	
 	public Evento salvar(Evento evento, Usuario usuario) {
 		evento.setCriador(usuario);
 		return eventoRepository.save(evento);
@@ -29,7 +34,7 @@ public class EventoService {
 		Optional<Evento> evento = eventoRepository.findById(idEvento);
 		
 		if(evento.isEmpty()) {
-			throw new RuntimeException("Vento não soprado. Digo, evento não encontrado");
+			throw new NotFoundException("Vento não soprado. Digo, evento não encontrado");
 		}
 		
 		eventoRepository.delete(evento.get());

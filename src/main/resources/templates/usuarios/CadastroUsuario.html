@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Avengers Pasqual</title>
+<link rel="stylesheet" th:href="@{/style/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/style/login.css}">
+</head>
+
+<body>
+
+	<section class="container mt-4">
+
+		<div class="col-sm-6 offset-sm-3">
+
+			<h2>Novo Avenger</h2>
+			<form th:action="@{/usuarios/novo}" method="POST"
+				th:object="${usuario}">
+
+				<div class="alert alert-danger" role="alert"
+					th:if="${#fields.hasErrors('nome')}"
+					th:each="err : ${#fields.errors('nome')}">[[${err}]]</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Qual teu nome maluco?</label> <input
+								th:field="*{nome}" class="form-control" autofocus="autofocus"
+								placeholder="Molhado, Bocão, Fiapo">
+
+						</div>
+					</div>
+				</div>
+
+				<div class="alert alert-danger" role="alert"
+					th:if="${#fields.hasErrors('email')}"
+					th:each="err : ${#fields.errors('email')}">[[${err}]]</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Teu e-mail?</label> <input th:field="*{email}" class="form-control"
+								autofocus="autofocus" placeholder="adoro_game@msn.com, rob_coringa@hotmail.com">
+						</div>
+					</div>
+				</div>
+
+				<div class="alert alert-danger" role="alert"
+					th:if="${#fields.hasErrors('quemSou')}"
+					th:each="err : ${#fields.errors('quemSou')}">[[${err}]]</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Uma breve descrição sobre você:</label> <textarea
+								th:field="*{quemSou}" class="form-control" autofocus="autofocus" rows="3"
+								placeholder="Num lugar lá...ahamm hamm"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="alert alert-danger" role="alert"
+					th:if="${#fields.hasErrors('senha')}"
+					th:each="err : ${#fields.errors('senha')}">[[${err}]]</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Senha:</label> <input type="password" placeholder="123456"
+								th:field="*{senha}" class="form-control"
+								autofocus="autofocus">
+						</div>
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Salva logo (lahhh)</button>
+
+			</form>
+
+		</div>
+
+	</section>
+
+	<th:block layout:fragment="javascript-extra">
+	</th:block>
+</body>
+
+</html>

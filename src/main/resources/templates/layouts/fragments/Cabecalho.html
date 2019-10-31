@@ -20,7 +20,7 @@
 					<li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/usuarios}">Usuários</a></li>
 				</ul>
-
+					<span class="text-primary mr-3">Logado como: [[${#authentication.principal.usuario.nome}]]</span>
 					<a th:href="@{/logout}" class="btn btn-outline-danger">Cair Nessa</a>
 			</div>
 		</div>

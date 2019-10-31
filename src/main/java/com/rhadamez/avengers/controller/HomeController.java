@@ -1,5 +1,7 @@
 package com.rhadamez.avengers.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,7 @@ public class HomeController {
 	private EventoService eventoService;
 
 	@GetMapping
-	public ModelAndView home() {
+	public ModelAndView home(Principal principal) {
 		ModelAndView mv = new ModelAndView("home/Home");
 		mv.addObject("eventos", eventoService.listar());
 		

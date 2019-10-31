@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/recuperar/**", "/404", "/favicon.ico").permitAll()
+				.antMatchers("/recuperar/**", "/usuarios/novo","/404", "/favicon.ico").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
