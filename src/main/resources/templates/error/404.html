@@ -8,34 +8,20 @@
 
 <title>Página não encontrada</title>
 
-<link rel="stylesheet" type="text/css"
-	th:href="@{/layout/stylesheets/vendors/bootstrap.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/erro.css}" />
+<link rel="stylesheet" th:href="@{/style/bootstrap.min.css}">
 </head>
 
 <body class="layout-404">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-xs-offset-0">
-				<div style="text-align: center; margin-top: 80px">
-	
-					<div class="mensagem-403__titulo">
-						<h1 class="">Página não encontrada :(</h1>
-						<div>
-							<div class="mensagem-403__mensagem">
-								<p>
-									Desculpe, mas você tentou acessar uma página o qual não existe.
-								</p>
-								<p>
-									Se você acha que isso pode ser um erro, contate-nos.
-								</p>
-							</div>
-							<div class="mensagem-403__rodape">
-								<a href="javascript:history.back()" class="btn btn-primary">Voltar para onde estava</a>
-							</div>
-						</div>
-					</div>
-				</div>
+
+			<div class="col-sm-6 offset-sm-3">
+				<h1 class="">Página não encontrada :(</h1>
+			</div>
+
+			<div class="col-sm-12">
+				<img th:src="@{/images/josue_404.png}"> <img
+					th:src="@{/images/roberson_404.png}">
 			</div>
 		</div>
 	</div>

@@ -34,25 +34,46 @@
 					</div>
 				</div>
 
-
-				<div class="form-group">
-					<label for="exampleInputEmail1">Descreva como será o
-						negócio:</label> <input th:field="*{descricao}" class="form-control"
-						autofocus="autofocus" placeholder="avenger@pasqual.com">
+				<div class="alert alert-danger" role="alert"
+					th:if="${#fields.hasErrors('descricao')}"
+					th:each="err : ${#fields.errors('descricao')}">[[${err}]]</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Descreva como será o
+								negócio:</label> <textarea th:field="*{descricao}" class="form-control"
+								autofocus="autofocus" placeholder="Vai começar com o Elias metendo 'bem-sim-meti aqui'..." rows="3"></textarea>
+						</div>
+					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="exampleInputEmail1">Onde?</label> <input
-						th:field="*{local}" class="form-control" autofocus="autofocus"
-						placeholder="avenger@pasqual.com">
+				<div class="alert alert-danger" role="alert"
+					th:if="${#fields.hasErrors('local')}"
+					th:each="err : ${#fields.errors('local')}">[[${err}]]</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Onde?</label> <input
+								th:field="*{local}" class="form-control" autofocus="autofocus"
+								placeholder="Num lugar lá...ahamm hamm">
+						</div>
+					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="exampleInputEmail1">Agora me diz...quando?</label> <input
-						data-provide="datepicker" data-date-format="dd/mm/yyyy"
-						th:field="*{data}" class="form-control datepicker"
-						autofocus="autofocus">
+				<div class="alert alert-danger" role="alert"
+					th:if="${#fields.hasErrors('data')}"
+					th:each="err : ${#fields.errors('data')}">[[${err}]]</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Agora me diz...quando?</label> <input
+								data-provide="datepicker" data-date-format="dd/mm/yyyy" placeholder="Temos que ver...é vdd..."
+								th:field="*{data}" class="form-control datepicker"
+								autofocus="autofocus">
+						</div>
+					</div>
 				</div>
+
 
 				<button type="submit" class="btn btn-primary">Salva logo
 					(lahhh)</button>
